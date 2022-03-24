@@ -1,0 +1,87 @@
+app:
+  host: 0.0.0.0
+  port: 9000
+grafana:
+  ip: 192.168.12.201
+  port: 3000
+prometheus:
+  ip: 192.168.12.201
+  port: 31190
+pg:
+  host: 192.168.12.163
+  port: 5432
+  user: postgres
+  password: postgres
+  database: alertinfo-1009
+monitor:
+  time: 5
+
+alert-app:
+  ip: 127.0.0.1
+  port: 31000
+service-center:
+  ip: 127.0.0.1
+  port: 19019
+
+n-features: 86
+n-actions: 20
+model-agent-factory:
+  default-model: a2c   #  MODIFIED
+ps:
+  memory:
+    epsilon: 0.8
+  priority:
+    weight:
+      gt: 0
+reward:
+  weight:
+    rbd: 0.8
+a2c:
+  active: True
+  model:
+    reset: True
+    actor-dump-file:
+    critic-dump-file:
+  learn-rate:
+    actor: 0.5 #0.001
+    critic: 0.5 #0.01
+  heuristic:
+    active: False
+    n-th: 40
+  experiential-playback:
+    active: False
+    batch-size: 1
+    replay-interval: 1
+    memory:
+      reset: True
+      size: 500
+      dump-file:
+  node-filter:
+    active: True
+psos:
+  active: False
+  w: 0.5
+  population-size: 10
+  max-steps: 50
+dqn:
+  active: False
+  reset-model: True
+  learn-rate: 0.05   #0.005
+  experiential-playback:
+    active: False
+    batch-size: 40
+    replay-interval: 5
+    memory:
+      reset: True
+      size: 500
+      dump-name: dqn_memory
+  node-filter:
+    active: True
+sc2:
+  active: False
+  memory:
+    size: 100
+
+env:
+  host: 192.168.91.109
+  port: 31001
